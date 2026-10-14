@@ -7,37 +7,7 @@
     <title>MY CREATIVE SITE</title>
 
     <style>
-        /* ページ全体 */
-   body {
-        /* 廃墟の壁のような背景 */
-    background-color: #171716;
-
-    background-image:
-        radial-gradient(
-            ellipse at 20% 30%,
-            rgba(110, 105, 95, 0.18),
-            transparent 45%
-        ),
-        radial-gradient(
-            ellipse at 80% 70%,
-            rgba(90, 90, 85, 0.15),
-            transparent 40%
-        ),
-        repeating-linear-gradient(
-            125deg,
-            transparent 0px,
-            transparent 37px,
-            rgba(0, 0, 0, 0.18) 38px,
-            transparent 40px
-        ),
-        repeating-linear-gradient(
-            15deg,
-            #20201e 0px,
-            #20201e 3px,
-            #1b1b19 4px,
-            #20201e 7px
-        );
-}
+     
 /* ===== キャラクター一覧 ===== */
 
 .character-grid {
@@ -47,13 +17,11 @@
     max-width: 700px;
     margin: 30px auto;
 }
-
 /* パソコンでは4列にする */
 @media (min-width: 700px) {
     .character-grid {
         grid-template-columns: repeat(4, minmax(0, 1fr));
     }
-}
 
 /* キャラクターカード */
 .character-card {
