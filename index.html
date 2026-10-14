@@ -43,6 +43,31 @@
             #20201e 7px
         );
 }
+        /* ===== 仮のキャラクター画像 ===== */
+
+.character-placeholder {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    box-sizing: border-box;
+
+    background-color: #080808;
+    border: 1px solid #51494a;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #55504f;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+
+    transition: border-color 0.25s;
+}
+
+/* タップ・カーソル時 */
+.character-card:hover .character-placeholder {
+    border-color: #cbaab5;
+}
     </style>
 </head>
     
@@ -59,24 +84,29 @@
 <p>この世界に存在する人物の記録。</p>
 
 <div class="character-grid">
+<h2>CHARACTERS</h2>
+
+<p>この世界に存在する人物の記録。</p>
+
+<div class="character-grid">
 
     <a href="character1.html" class="character-card">
-        <img src="images/character1.jpg" alt="キャラクター1">
+        <div class="character-placeholder">NO IMAGE</div>
         <span class="character-name">NAME_001</span>
     </a>
 
     <a href="character2.html" class="character-card">
-        <img src="images/character2.jpg" alt="キャラクター2">
+        <div class="character-placeholder">NO IMAGE</div>
         <span class="character-name">NAME_002</span>
     </a>
 
     <a href="character3.html" class="character-card">
-        <img src="images/character3.jpg" alt="キャラクター3">
+        <div class="character-placeholder">NO IMAGE</div>
         <span class="character-name">NAME_003</span>
     </a>
 
     <a href="character4.html" class="character-card">
-        <img src="images/character4.jpg" alt="キャラクター4">
+        <div class="character-placeholder">NO IMAGE</div>
         <span class="character-name">NAME_004</span>
     </a>
 
