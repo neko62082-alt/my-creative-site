@@ -76,7 +76,35 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">        
-    </style>
+/* キャラクター画像の装飾 */
+.character-card {
+    display: block;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+/* 画像の枠 */
+.character-card img {
+    border: 1px solid #76616a;
+    box-shadow: 0 0 10px rgba(203, 170, 181, 0.12);
+    transition: 0.3s;
+}
+
+/* タップ・カーソルを乗せたとき */
+.character-card:hover img {
+    border-color: #cbaab5;
+    box-shadow: 0 0 16px rgba(203, 170, 181, 0.35);
+}
+
+/* 名前の文字 */
+.character-name {
+    transition: 0.3s;
+}
+
+.character-card:hover .character-name {
+    color: #f0dce3;
+}
+        </style>
 </head>
  
     <h1>MY CREATIVE SITE</h1>
