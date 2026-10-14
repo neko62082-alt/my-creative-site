@@ -43,6 +43,58 @@
             #20201e 7px
         );
 }
+ /* ===== キャラクター一覧 ===== */
+
+.character-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 16px;
+    max-width: 700px;
+    margin: 30px auto;
+}
+
+/* パソコンでは4列にする */
+@media (min-width: 700px) {
+    .character-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+/* キャラクターカード */
+.character-card {
+    display: block;
+    color: #d1cfca;
+    text-decoration: none;
+    min-width: 0;
+}
+
+/* 四角い画像 */
+.character-card img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border: 1px solid #51494a;
+    box-sizing: border-box;
+    transition: border-color 0.25s,
+                opacity 0.25s;
+}
+
+/* タップ・カーソル時の変化 */
+.character-card:hover img {
+    border-color: #cbaab5;
+    opacity: 0.8;
+}
+
+/* キャラクター名 */
+.character-name {
+    display: block;
+    margin-top: 9px;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    color: #cbaab5;
+    text-align: center;
+}       
     </style>
 </head>
 /* ===== 文字の基本デザイン ===== */
