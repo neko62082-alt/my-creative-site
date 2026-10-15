@@ -62,7 +62,7 @@
             box-sizing: border-box;
         }
 
-        /* 下のイラストとミニキャラを重ねる場所 */
+        /* 大きなイラストとミニキャラを重ねる親要素 */
         .mini-container {
             position: relative;
             width: 100%;
@@ -70,7 +70,7 @@
             margin: 40px auto 25px;
         }
 
-        /* 下の大きなイラスト */
+        /* 下に表示する大きなイラスト */
         .main-illustration {
             display: block;
             width: 100%;
@@ -79,7 +79,7 @@
             box-sizing: border-box;
         }
 
-        /* 左上で揺れるミニキャラ */
+        /* 大きなイラストの上で揺れるミニキャラ */
         .mini-character {
             position: absolute;
             width: 90px;
@@ -102,7 +102,7 @@
             }
         }
 
-        /* 動きを減らす設定の端末ではアニメーションを止める */
+        /* 動きを減らす設定の場合はアニメーションを停止 */
         @media (prefers-reduced-motion: reduce) {
             .mini-character {
                 animation: none;
@@ -153,22 +153,24 @@
 
         <h1>シルヴァン</h1>
 
-        <!-- 1枚目：上の立ち絵 -->
+        <!-- 上の立ち絵 -->
         <img
             class="portrait"
             src="無題891_20261015051345.png"
             alt="シルヴァンの立ち絵"
         >
 
-        <!-- 2枚目：下のイラスト＋ミニキャラ -->
+        <!-- 下の大きなイラスト＋揺れるミニキャラ -->
         <div class="mini-container">
 
+            <!-- 大きなイラスト -->
             <img
                 class="main-illustration"
-                src="名称未設定のアートワーク.png"
+                src="シルヴァン.PNG"
                 alt="シルヴァンの別イラスト"
             >
 
+            <!-- 上に重ねる小さなミニキャラ -->
             <img
                 class="mini-character"
                 src="mini.PNG"
