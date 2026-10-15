@@ -111,11 +111,64 @@
             alt="キャラクターの立ち絵"
         >
 
-       <img
-    src="名称未設定のアートワーク.png"
-    alt="キャラクターの別イラスト"
-    style="width: 100%; max-width: 360px; height: auto; display: block; margin: 25px auto; border: 1px solid #76616a; box-sizing: border-box;"
->
+     <style>
+    .mini-container {
+        position: relative;
+        width: 100%;
+        max-width: 360px;
+        margin: 25px auto;
+    }
+
+    .main-illustration {
+        display: block;
+        width: 100%;
+        height: auto;
+        border: 1px solid #76616a;
+        box-sizing: border-box;
+    }
+
+    .mini-character {
+        position: absolute;
+        width: 90px;
+        height: auto;
+        top: -15px;
+        left: -15px;
+        animation: mini-wiggle 1.2s ease-in-out infinite;
+        transform-origin: bottom center;
+        z-index: 2;
+    }
+
+    @keyframes mini-wiggle {
+        0%, 100% {
+            transform: rotate(-8deg) translateX(-3px);
+        }
+        50% {
+            transform: rotate(8deg) translateX(3px);
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .mini-character {
+            animation: none;
+        }
+    }
+</style>
+
+<div class="mini-container">
+
+    <img
+        class="main-illustration"
+        src="名称未設定のアートワーク.png"
+        alt="キャラクターの別イラスト"
+    >
+
+    <img
+        class="mini-character"
+        src="mini.PNG"
+        alt="揺れるミニキャラ"
+    >
+
+</div>
         <h2>PROFILE</h2>
 
         <div class="info">
