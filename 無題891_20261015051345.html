@@ -50,6 +50,7 @@
             font-weight: 500;
         }
 
+        /* 上の立ち絵 */
         .portrait {
             width: 100%;
             max-width: 360px;
@@ -59,6 +60,53 @@
             margin: 25px auto;
             border: 1px solid #76616a;
             box-sizing: border-box;
+        }
+
+        /* 下のイラストとミニキャラを重ねる場所 */
+        .mini-container {
+            position: relative;
+            width: 100%;
+            max-width: 360px;
+            margin: 40px auto 25px;
+        }
+
+        /* 下の大きなイラスト */
+        .main-illustration {
+            display: block;
+            width: 100%;
+            height: auto;
+            border: 1px solid #76616a;
+            box-sizing: border-box;
+        }
+
+        /* 左上で揺れるミニキャラ */
+        .mini-character {
+            position: absolute;
+            width: 90px;
+            height: auto;
+            top: -25px;
+            left: -20px;
+            animation: mini-wiggle 1.2s ease-in-out infinite;
+            transform-origin: bottom center;
+            z-index: 2;
+        }
+
+        /* 左右にピコピコ揺れる動き */
+        @keyframes mini-wiggle {
+            0%, 100% {
+                transform: rotate(-8deg) translateX(-3px);
+            }
+
+            50% {
+                transform: rotate(8deg) translateX(3px);
+            }
+        }
+
+        /* 動きを減らす設定の端末ではアニメーションを止める */
+        @media (prefers-reduced-motion: reduce) {
+            .mini-character {
+                animation: none;
+            }
         }
 
         h2 {
@@ -105,76 +153,36 @@
 
         <h1>シルヴァン</h1>
 
+        <!-- 1枚目：上の立ち絵 -->
         <img
             class="portrait"
             src="無題891_20261015051345.png"
-            alt="キャラクターの立ち絵"
+            alt="シルヴァンの立ち絵"
         >
 
-     <style>
-    .mini-container {
-        position: relative;
-        width: 100%;
-        max-width: 360px;
-        margin: 25px auto;
-    }
+        <!-- 2枚目：下のイラスト＋ミニキャラ -->
+        <div class="mini-container">
 
-    .main-illustration {
-        display: block;
-        width: 100%;
-        height: auto;
-        border: 1px solid #76616a;
-        box-sizing: border-box;
-    }
+            <img
+                class="main-illustration"
+                src="名称未設定のアートワーク.png"
+                alt="シルヴァンの別イラスト"
+            >
 
-    .mini-character {
-        position: absolute;
-        width: 90px;
-        height: auto;
-        top: -15px;
-        left: -15px;
-        animation: mini-wiggle 1.2s ease-in-out infinite;
-        transform-origin: bottom center;
-        z-index: 2;
-    }
+            <img
+                class="mini-character"
+                src="mini.PNG"
+                alt="揺れるミニキャラ"
+            >
 
-    @keyframes mini-wiggle {
-        0%, 100% {
-            transform: rotate(-8deg) translateX(-3px);
-        }
-        50% {
-            transform: rotate(8deg) translateX(3px);
-        }
-    }
+        </div>
 
-    @media (prefers-reduced-motion: reduce) {
-        .mini-character {
-            animation: none;
-        }
-    }
-</style>
-
-<div class="mini-container">
-
-    <img
-        class="main-illustration"
-        src="名称未設定のアートワーク.png"
-        alt="キャラクターの別イラスト"
-    >
-
-    <img
-        class="mini-character"
-        src="mini.PNG"
-        alt="揺れるミニキャラ"
-    >
-
-</div>
         <h2>PROFILE</h2>
 
         <div class="info">
-            <p><span class="label">NAME</span> 名前を入力</p>
-            <p><span class="label">AGE</span> 年齢を入力</p>
-            <p><span class="label">HEIGHT</span> 身長を入力</p>
+            <p><span class="label">NAME</span> シルヴァン</p>
+            <p><span class="label">AGE</span> 38歳</p>
+            <p><span class="label">HEIGHT</span> 184cm</p>
             <p><span class="label">GENDER</span> 性別を入力</p>
         </div>
 
