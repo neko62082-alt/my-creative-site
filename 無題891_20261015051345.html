@@ -79,7 +79,7 @@
             box-sizing: border-box;
         }
 
-        /* つまんで動かせるミニキャラ */
+        /* ミニキャラ */
         .mini-character {
             position: absolute;
             width: 90px;
@@ -87,33 +87,48 @@
             top: -25px;
             left: -20px;
 
-            animation: mini-wiggle 1.2s ease-in-out infinite;
+            /* 潰れて伸びるアニメーション */
+            animation: mini-squish 1.1s ease-in-out infinite;
             transform-origin: bottom center;
-            z-index: 2;
 
+            z-index: 2;
             cursor: grab;
             touch-action: none;
             user-select: none;
+            -webkit-user-select: none;
             -webkit-user-drag: none;
         }
 
-        /* つまんでいる間は揺れを止める */
+        /* つまんでいる間 */
         .mini-character.dragging {
             animation: none;
             cursor: grabbing;
         }
 
-        /* 左右にピコピコ揺れる動き */
-        @keyframes mini-wiggle {
+        /* むにっ → びよーん → むにっ */
+        @keyframes mini-squish {
             0%, 100% {
-                transform: rotate(-8deg) translateX(-3px);
+                transform: scale(1, 1);
             }
 
-            50% {
-                transform: rotate(8deg) translateX(3px);
+            20% {
+                transform: scale(1.18, 0.78);
+            }
+
+            40% {
+                transform: scale(0.88, 1.18);
+            }
+
+            60% {
+                transform: scale(1.08, 0.92);
+            }
+
+            80% {
+                transform: scale(0.96, 1.05);
             }
         }
 
+        /* 動きを減らす設定の端末では停止 */
         @media (prefers-reduced-motion: reduce) {
             .mini-character {
                 animation: none;
@@ -181,13 +196,14 @@
             >
 
             <img
-    class="mini-character"
-    src="mini.PNG"
-    data-normal="mini.PNG"
-    data-grab="mini_grab.PNG"
-    alt="つまんで動かせるミニキャラ"
-    draggable="false"
->
+                class="mini-character"
+                src="mini.PNG"
+                data-normal="mini.PNG"
+                data-grab="mini_grab.PNG"
+                alt="つまんで動かせるミニキャラ"
+                draggable="false"
+            >
+
         </div>
 
         <h2>PROFILE</h2>
@@ -219,57 +235,62 @@
 
     </main>
 
-    <!-- ミニキャラをつまんで移動する機能 -->
- <script>
-    const mini = document.querySelector(".mini-character");
+    <!-- ミニキャラをつまんで動かす機能 -->
+    <script>
+        const mini = document.querySelector(".mini-character");
 
-    let dragging = false;
-    let startX = 0;
-    let startY = 0;
-    let originalLeft = 0;
-    let originalTop = 0;
+        let dragging = false;
+        let startX = 0;
+        let startY = 0;
+        let originalLeft = 0;
+        let originalTop = 0;
 
-    mini.addEventListener("pointerdown", function(event) {
-        dragging = true;
+        // つまんだとき
+        mini.addEventListener("pointerdown", function(event) {
+            dragging = true;
 
-        startX = event.clientX;
-        startY = event.clientY;
+            startX = event.clientX;
+            startY = event.clientY;
 
-        originalLeft = mini.offsetLeft;
-        originalTop = mini.offsetTop;
+            originalLeft = mini.offsetLeft;
+            originalTop = mini.offsetTop;
 
-        mini.classList.add("dragging");
+            mini.classList.add("dragging");
 
-        // つかんでいる間の画像に変更
-        mini.src = mini.dataset.grab;
+            // つまんだときの画像に変更
+            mini.src = mini.dataset.grab;
 
-        mini.setPointerCapture(event.pointerId);
-        event.preventDefault();
-    });
+            // 指やマウスの動きを追跡
+            mini.setPointerCapture(event.pointerId);
 
-    mini.addEventListener("pointermove", function(event) {
-        if (!dragging) return;
+            event.preventDefault();
+        });
 
-        const moveX = event.clientX - startX;
-        const moveY = event.clientY - startY;
+        // 指やマウスの動きに合わせて移動
+        mini.addEventListener("pointermove", function(event) {
+            if (!dragging) return;
 
-        mini.style.left = (originalLeft + moveX) + "px";
-        mini.style.top = (originalTop + moveY) + "px";
-    });
+            const moveX = event.clientX - startX;
+            const moveY = event.clientY - startY;
 
-    function stopDragging() {
-        if (!dragging) return;
+            mini.style.left = (originalLeft + moveX) + "px";
+            mini.style.top = (originalTop + moveY) + "px";
+        });
 
-        dragging = false;
-        mini.classList.remove("dragging");
+        // 指を離したとき
+        function stopDragging() {
+            if (!dragging) return;
 
-        // 指を離したら元の画像に戻す
-        mini.src = mini.dataset.normal;
-    }
+            dragging = false;
+            mini.classList.remove("dragging");
 
-    mini.addEventListener("pointerup", stopDragging);
-    mini.addEventListener("pointercancel", stopDragging);
-</script>
+            // 通常の画像に戻す
+            mini.src = mini.dataset.normal;
+        }
+
+        mini.addEventListener("pointerup", stopDragging);
+        mini.addEventListener("pointercancel", stopDragging);
+    </script>
 
 </body>
 </html>
