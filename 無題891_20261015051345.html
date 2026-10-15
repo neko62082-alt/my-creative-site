@@ -181,12 +181,13 @@
             >
 
             <img
-                class="mini-character"
-                src="mini.PNG"
-                alt="つまんで動かせるミニキャラ"
-                draggable="false"
-            >
-
+    class="mini-character"
+    src="mini.PNG"
+    data-normal="mini.PNG"
+    data-grab="mini_grab.PNG"
+    alt="つまんで動かせるミニキャラ"
+    draggable="false"
+>
         </div>
 
         <h2>PROFILE</h2>
@@ -219,52 +220,56 @@
     </main>
 
     <!-- ミニキャラをつまんで移動する機能 -->
-    <script>
-        const mini = document.querySelector(".mini-character");
-        const container = document.querySelector(".mini-container");
+ <script>
+    const mini = document.querySelector(".mini-character");
 
-        let dragging = false;
-        let startX = 0;
-        let startY = 0;
-        let originalLeft = 0;
-        let originalTop = 0;
+    let dragging = false;
+    let startX = 0;
+    let startY = 0;
+    let originalLeft = 0;
+    let originalTop = 0;
 
-        mini.addEventListener("pointerdown", function(event) {
-            dragging = true;
+    mini.addEventListener("pointerdown", function(event) {
+        dragging = true;
 
-            startX = event.clientX;
-            startY = event.clientY;
+        startX = event.clientX;
+        startY = event.clientY;
 
-            originalLeft = mini.offsetLeft;
-            originalTop = mini.offsetTop;
+        originalLeft = mini.offsetLeft;
+        originalTop = mini.offsetTop;
 
-            mini.classList.add("dragging");
+        mini.classList.add("dragging");
 
-            mini.setPointerCapture(event.pointerId);
+        // つかんでいる間の画像に変更
+        mini.src = mini.dataset.grab;
 
-            event.preventDefault();
-        });
+        mini.setPointerCapture(event.pointerId);
+        event.preventDefault();
+    });
 
-        mini.addEventListener("pointermove", function(event) {
-            if (!dragging) return;
+    mini.addEventListener("pointermove", function(event) {
+        if (!dragging) return;
 
-            const moveX = event.clientX - startX;
-            const moveY = event.clientY - startY;
+        const moveX = event.clientX - startX;
+        const moveY = event.clientY - startY;
 
-            mini.style.left = (originalLeft + moveX) + "px";
-            mini.style.top = (originalTop + moveY) + "px";
-        });
+        mini.style.left = (originalLeft + moveX) + "px";
+        mini.style.top = (originalTop + moveY) + "px";
+    });
 
-        function stopDragging() {
-            if (!dragging) return;
+    function stopDragging() {
+        if (!dragging) return;
 
-            dragging = false;
-            mini.classList.remove("dragging");
-        }
+        dragging = false;
+        mini.classList.remove("dragging");
 
-        mini.addEventListener("pointerup", stopDragging);
-        mini.addEventListener("pointercancel", stopDragging);
-    </script>
+        // 指を離したら元の画像に戻す
+        mini.src = mini.dataset.normal;
+    }
+
+    mini.addEventListener("pointerup", stopDragging);
+    mini.addEventListener("pointercancel", stopDragging);
+</script>
 
 </body>
 </html>
